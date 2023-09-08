@@ -2,13 +2,17 @@ name: dvc-cml
 on: [push]
 jobs:
   run:
-    runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml-py3:latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: iterative/setup-cml@v1
       - name: cml_run
         env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{secrets.MY_TOKEN}}
         run: |
           pip install -r requirements.txt
           dvc repro 
