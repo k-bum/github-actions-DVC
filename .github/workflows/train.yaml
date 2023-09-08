@@ -18,7 +18,7 @@ jobs:
           dvc repro 
 
           git fetch --prune ## https://git-scm.com/docs/git-fetch
-          dvc metrics diff --show-md main > report.md
+          dvc metrics diff --md main > report.md
 
           echo "## Validating results by region"
           echo "![](./by_region.png)" >> report.md
